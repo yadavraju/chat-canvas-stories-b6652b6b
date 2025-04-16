@@ -25,7 +25,7 @@ export default function StoryCard({
   };
 
   return (
-    <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4 max-w-sm mx-auto">
+    <div className="relative w-full bg-white/5 rounded-lg overflow-hidden mb-4">
       <AspectRatio ratio={9/16} className="relative bg-black/20">
         <img
           src={imageUrl}
