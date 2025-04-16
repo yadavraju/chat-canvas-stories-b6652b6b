@@ -4,7 +4,7 @@ import StoryCanvas, { Story } from "@/components/StoryCanvas";
 import { EditSidebar } from "@/components/EditSidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, ChevronRight, PanelLeftClose, PanelRightClose } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const sampleStories: Story[] = [
   {
@@ -52,9 +52,9 @@ export default function Index() {
       <div 
         className={`${
           isMobile ? (showChat ? 'w-full' : 'w-0') : 'w-1/2'
-        } transition-all duration-300 flex flex-col border-r border-white/10 relative`}
+        } transition-all duration-300 flex flex-col border-r border-white/10`}
       >
-        <div className="flex-1 p-4 overflow-y-auto bg-[#222222]/50 backdrop-blur-xl">
+        <div className="flex-1 p-4 overflow-y-auto bg-[#222222]/50">
           {/* Chat messages would go here */}
         </div>
         <ChatInput onSendMessage={handleSendMessage} />
@@ -73,18 +73,8 @@ export default function Index() {
       <div 
         className={`${
           isMobile ? (!showChat ? 'w-full' : 'w-0') : 'w-1/2'
-        } transition-all duration-300 bg-gradient-to-br from-[#1A1F2C] to-[#2A2F3C] relative`}
+        } transition-all duration-300 bg-[#1A1F2C]`}
       >
-        {!isMobile && (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="absolute top-4 left-4 z-10 bg-white/5 hover:bg-white/10"
-            onClick={() => setShowChat(!showChat)}
-          >
-            {showChat ? <PanelLeftClose className="h-4 w-4" /> : <PanelRightClose className="h-4 w-4" />}
-          </Button>
-        )}
         <StoryCanvas stories={stories} onSettingsClick={handleSettingsClick} />
         {isMobile && showChat && (
           <Button

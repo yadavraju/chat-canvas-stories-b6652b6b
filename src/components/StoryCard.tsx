@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { Download, Settings, Play, Pause } from 'lucide-react';
 import { Button } from './ui/button';
@@ -24,8 +25,8 @@ export default function StoryCard({
   };
 
   return (
-    <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4 max-w-2xl mx-auto">
-      <AspectRatio ratio={16 / 9} className="relative bg-black/20">
+    <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4 max-w-sm mx-auto">
+      <AspectRatio ratio={9/16} className="relative bg-black/20">
         <img
           src={imageUrl}
           alt={title}
@@ -50,12 +51,10 @@ export default function StoryCard({
         </div>
       </AspectRatio>
 
-      {/* Content Section */}
       <div className="p-4 bg-black/40">
         <h2 className="text-xl font-semibold text-white mb-2">{title}</h2>
         <p className="text-sm text-white/80 mb-4">{description}</p>
         
-        {/* Custom Audio Player */}
         <div className="flex items-center gap-3 text-white/80">
           <Button
             variant="ghost"
