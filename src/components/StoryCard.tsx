@@ -1,6 +1,6 @@
 
-import React from 'react';
-import { Download, Settings } from 'lucide-react';
+import React, { useState } from 'react';
+import { Download, Settings, Play, Pause } from 'lucide-react';
 import { Button } from './ui/button';
 
 interface StoryCardProps {
@@ -16,10 +16,17 @@ export default function StoryCard({
   imageUrl,
   onSettingsClick,
 }: StoryCardProps) {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+    // Audio play/pause logic would go here
+  };
+
   return (
-    <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4">
+    <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4 max-w-2xl mx-auto">
       {/* Image Section */}
-      <div className="relative h-[300px]">
+      <div className="relative aspect-video">
         <img
           src={imageUrl}
           alt={title}
@@ -49,15 +56,21 @@ export default function StoryCard({
         <h2 className="text-xl font-semibold text-white mb-2">{title}</h2>
         <p className="text-sm text-white/80 mb-4">{description}</p>
         
-        {/* Audio Player */}
-        <div className="w-full">
-          <audio
-            controls
-            className="w-full h-8 [&::-webkit-media-controls-panel]:bg-black/40 [&::-webkit-media-controls-current-time-display]:text-white [&::-webkit-media-controls-time-remaining-display]:text-white"
+        {/* Custom Audio Player */}
+        <div className="flex items-center gap-3 text-white/80">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8 bg-black/20 hover:bg-black/40"
+            onClick={togglePlay}
           >
-            <source src="#" type="audio/mpeg" />
-            Your browser does not support the audio element.
-          </audio>
+            {isPlaying ? (
+              <Pause className="h-4 w-4 text-white" />
+            ) : (
+              <Play className="h-4 w-4 text-white" />
+            )}
+          </Button>
+          <span>Ambient soundtrack available</span>
         </div>
       </div>
     </div>
