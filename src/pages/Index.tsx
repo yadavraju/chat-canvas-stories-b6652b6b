@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import ChatInput from "@/components/ChatInput";
 import StoryCanvas, { Story } from "@/components/StoryCanvas";
@@ -21,7 +22,7 @@ const sampleStories: Story[] = [
 export default function Index() {
   const [stories, setStories] = useState<Story[]>(sampleStories);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedStoryId, setSelectedStoryId] = useState<string | null>(null);
+  const [selectedStory, setSelectedStory] = useState<Story | null>(null);
 
   const handleSendMessage = (message: string) => {
     const newStory: Story = {
@@ -35,8 +36,11 @@ export default function Index() {
   };
 
   const handleSettingsClick = (storyId: string) => {
-    setSelectedStoryId(storyId);
-    setSidebarOpen(true);
+    const story = stories.find((s) => s.id === storyId);
+    if (story) {
+      setSelectedStory(story);
+      setSidebarOpen(true);
+    }
   };
 
   return (
@@ -55,7 +59,7 @@ export default function Index() {
       <EditSidebar 
         open={sidebarOpen} 
         onOpenChange={setSidebarOpen}
-        storyId={selectedStoryId}
+        story={selectedStory}
       />
     </div>
   );
