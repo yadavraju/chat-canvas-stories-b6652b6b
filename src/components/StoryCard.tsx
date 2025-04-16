@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { Download, Settings, Play, Pause } from 'lucide-react';
 import { Button } from './ui/button';
+import { AspectRatio } from './ui/aspect-ratio';
 
 interface StoryCardProps {
   title: string;
@@ -25,12 +25,11 @@ export default function StoryCard({
 
   return (
     <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4 max-w-2xl mx-auto">
-      {/* Image Section */}
-      <div className="relative aspect-video">
+      <AspectRatio ratio={16 / 9} className="relative bg-black/20">
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-center"
         />
         <div className="absolute top-2 right-2 flex gap-2">
           <Button
@@ -49,7 +48,7 @@ export default function StoryCard({
             <Settings className="h-4 w-4 text-white" />
           </Button>
         </div>
-      </div>
+      </AspectRatio>
 
       {/* Content Section */}
       <div className="p-4 bg-black/40">
