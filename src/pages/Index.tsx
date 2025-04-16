@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import ChatInput from "@/components/ChatInput";
 import StoryCanvas, { Story } from "@/components/StoryCanvas";
+import { EditSidebar } from "@/components/EditSidebar";
 
 const sampleStories: Story[] = [
   {
@@ -20,10 +20,10 @@ const sampleStories: Story[] = [
 
 export default function Index() {
   const [stories, setStories] = useState<Story[]>(sampleStories);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [selectedStoryId, setSelectedStoryId] = useState<string | null>(null);
 
   const handleSendMessage = (message: string) => {
-    // In a real app, you would send this message to an API
-    // and get a response to generate a new story
     const newStory: Story = {
       id: String(stories.length + 1),
       title: "Generated Story",
@@ -35,8 +35,8 @@ export default function Index() {
   };
 
   const handleSettingsClick = (storyId: string) => {
-    // This would typically open a modal or form to edit the story
-    console.log('Settings clicked for story:', storyId);
+    setSelectedStoryId(storyId);
+    setSidebarOpen(true);
   };
 
   return (
@@ -51,6 +51,12 @@ export default function Index() {
       <div className="w-1/2">
         <StoryCanvas stories={stories} onSettingsClick={handleSettingsClick} />
       </div>
+
+      <EditSidebar 
+        open={sidebarOpen} 
+        onOpenChange={setSidebarOpen}
+        storyId={selectedStoryId}
+      />
     </div>
   );
 }

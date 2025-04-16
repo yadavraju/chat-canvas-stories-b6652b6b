@@ -19,11 +19,11 @@ export default function StoryCard({
   return (
     <div className="relative bg-white/5 rounded-lg overflow-hidden mb-4">
       {/* Image Section */}
-      <div className="relative h-[200px]">
+      <div className="relative h-[300px]">
         <img
           src={imageUrl}
           alt={title}
-          className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          className="w-full h-full object-cover"
         />
         <div className="absolute top-2 right-2 flex gap-2">
           <Button
@@ -53,7 +53,7 @@ export default function StoryCard({
         <div className="w-full">
           <audio
             controls
-            className="w-full h-8"
+            className="w-full h-8 [&::-webkit-media-controls-panel]:bg-black/40 [&::-webkit-media-controls-current-time-display]:text-white [&::-webkit-media-controls-time-remaining-display]:text-white"
           >
             <source src="#" type="audio/mpeg" />
             Your browser does not support the audio element.
