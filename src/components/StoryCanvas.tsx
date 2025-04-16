@@ -12,9 +12,10 @@ export interface Story {
 
 interface StoryCanvasProps {
   stories: Story[];
+  onSettingsClick?: (storyId: string) => void;
 }
 
-export default function StoryCanvas({ stories }: StoryCanvasProps) {
+export default function StoryCanvas({ stories, onSettingsClick }: StoryCanvasProps) {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function StoryCanvas({ stories }: StoryCanvasProps) {
           <StoryCard
             key={story.id}
             {...story}
+            onSettingsClick={() => onSettingsClick?.(story.id)}
           />
         ))}
         <div ref={bottomRef} />

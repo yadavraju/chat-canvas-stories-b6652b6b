@@ -34,17 +34,22 @@ export default function Index() {
     setStories((prev) => [...prev, newStory]);
   };
 
+  const handleSettingsClick = (storyId: string) => {
+    // This would typically open a modal or form to edit the story
+    console.log('Settings clicked for story:', storyId);
+  };
+
   return (
     <div className="flex h-screen bg-zinc-900">
       <div className="w-1/2 flex flex-col border-r border-white/10">
-        <div className="flex-1 p-4 overflow-y-auto">
+        <div className="flex-1 p-4 overflow-y-auto bg-gray-800/50">
           {/* Chat messages would go here */}
         </div>
         <ChatInput onSendMessage={handleSendMessage} />
       </div>
       
       <div className="w-1/2">
-        <StoryCanvas stories={stories} />
+        <StoryCanvas stories={stories} onSettingsClick={handleSettingsClick} />
       </div>
     </div>
   );
