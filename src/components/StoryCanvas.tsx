@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import StoryCard from "./StoryCard";
 import { ScrollArea } from "./ui/scroll-area";
 
@@ -15,6 +15,12 @@ interface StoryCanvasProps {
 }
 
 export default function StoryCanvas({ stories }: StoryCanvasProps) {
+  const bottomRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [stories]);
+
   if (stories.length === 0) {
     return (
       <div className="flex items-center justify-center h-full bg-zinc-900 text-white/60">
@@ -32,6 +38,7 @@ export default function StoryCanvas({ stories }: StoryCanvasProps) {
             {...story}
           />
         ))}
+        <div ref={bottomRef} />
       </div>
     </ScrollArea>
   );
