@@ -1,4 +1,6 @@
 
+import React from 'react';
+
 interface StoryCardProps {
   title: string;
   description: string;
@@ -11,17 +13,17 @@ export default function StoryCard({
   imageUrl,
 }: StoryCardProps) {
   return (
-    <div className="relative h-[400px] bg-black/20 rounded-lg overflow-hidden">
+    <div className="relative h-[350px] bg-black/10 rounded-lg overflow-hidden mb-4">
       <img
         src={imageUrl}
         alt={title}
         className="w-full h-full object-cover"
       />
       
-      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent">
-        <div className="w-full p-8">
-          <h2 className="text-4xl font-bold text-white mb-4">{title}</h2>
-          <p className="text-lg text-white/90">{description}</p>
+      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/70 to-transparent">
+        <div className="w-full p-6">
+          <h2 className="text-2xl font-semibold text-white mb-2">{title}</h2>
+          <p className="text-sm text-white/80">{description}</p>
         </div>
       </div>
     </div>
