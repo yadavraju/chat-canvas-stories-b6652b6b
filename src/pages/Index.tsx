@@ -5,6 +5,7 @@ import { EditSidebar } from "@/components/EditSidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Collapsible, CollapsibleContent } from "@/components/ui/collapsible";
 
 const sampleStories: Story[] = [
   {
@@ -25,7 +26,7 @@ export default function Index() {
   const [stories, setStories] = useState<Story[]>(sampleStories);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [selectedStory, setSelectedStory] = useState<Story | null>(null);
-  const [showChat, setShowChat] = useState(true);
+  const [showResults, setShowResults] = useState(true);
   const isMobile = useIsMobile();
 
   const handleSendMessage = (message: string) => {
@@ -49,39 +50,35 @@ export default function Index() {
 
   return (
     <div className="flex h-screen bg-[#1A1F2C] relative overflow-hidden">
-      <div 
-        className={`${
-          isMobile ? (showChat ? 'w-full' : 'w-0') : 'w-1/2'
-        } transition-all duration-300 flex flex-col border-r border-white/10`}
-      >
+      <div className={`${
+        isMobile ? (showResults ? 'w-full' : 'w-0') : 'w-1/2'
+      } transition-all duration-300 flex flex-col border-r border-white/10`}>
         <div className="flex-1 p-4 overflow-y-auto bg-[#222222]/50">
           {/* Chat messages would go here */}
         </div>
         <ChatInput onSendMessage={handleSendMessage} />
-        {isMobile && !showChat && (
+        {isMobile && (
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-[-40px] top-1/2 transform -translate-y-1/2 bg-white/5 hover:bg-white/10"
-            onClick={() => setShowChat(true)}
+            className="absolute right-4 top-4 bg-white/5 hover:bg-white/10"
+            onClick={() => setShowResults(false)}
           >
             <ChevronRight className="h-4 w-4" />
           </Button>
         )}
       </div>
-      
-      <div 
-        className={`${
-          isMobile ? (!showChat ? 'w-full' : 'w-0') : 'w-1/2'
-        } transition-all duration-300 bg-[#1A1F2C]`}
-      >
+
+      <div className={`${
+        isMobile ? (!showResults ? 'w-full' : 'w-0') : 'w-1/2'
+      } transition-all duration-300 bg-[#1A1F2C] relative`}>
         <StoryCanvas stories={stories} onSettingsClick={handleSettingsClick} />
-        {isMobile && showChat && (
+        {isMobile && (
           <Button
             variant="ghost"
             size="icon"
-            className="absolute left-[-40px] top-1/2 transform -translate-y-1/2 bg-white/5 hover:bg-white/10"
-            onClick={() => setShowChat(false)}
+            className="absolute left-4 top-4 bg-white/5 hover:bg-white/10"
+            onClick={() => setShowResults(true)}
           >
             <ChevronLeft className="h-4 w-4" />
           </Button>
