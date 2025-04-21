@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import ChatInput from "@/components/ChatInput";
 import StoryCanvas, { Story } from "@/components/StoryCanvas";
@@ -61,10 +62,10 @@ export default function Index() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute right-4 top-4 bg-white/5 hover:bg-white/10"
+            className="absolute right-4 top-4 z-50 bg-white/10 hover:bg-white/20"
             onClick={() => setShowResults(false)}
           >
-            <ChevronRight className="h-4 w-4" />
+            <ChevronRight className="h-4 w-4 text-white" />
           </Button>
         )}
       </div>
@@ -77,10 +78,10 @@ export default function Index() {
           <Button
             variant="ghost"
             size="icon"
-            className="absolute left-4 top-4 bg-white/5 hover:bg-white/10"
+            className="absolute left-4 top-4 z-50 bg-white/10 hover:bg-white/20"
             onClick={() => setShowResults(true)}
           >
-            <ChevronLeft className="h-4 w-4" />
+            <ChevronLeft className="h-4 w-4 text-white" />
           </Button>
         )}
       </div>
