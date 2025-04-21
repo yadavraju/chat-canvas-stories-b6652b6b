@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import ChatInput from "@/components/ChatInput";
 import StoryCanvas, { Story } from "@/components/StoryCanvas";
@@ -39,6 +38,10 @@ export default function Index() {
     };
     
     setStories((prev) => [...prev, newStory]);
+    
+    if (isMobile) {
+      setShowResults(false);
+    }
   };
 
   const handleSettingsClick = (storyId: string) => {
